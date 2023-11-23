@@ -1,0 +1,25 @@
+class Employee
+{
+	int id, salary;
+	String name, desg;
+	Employee(int id, String name, String desg, int salary)
+	{
+		this.id=id;
+		this.name=name;
+		this.desg=desg;
+		this.salary=salary;
+	}
+	public String toString()
+	{
+		return id+" "+name+" "+desg+" "+salary ;
+	}
+}
+class EmployeeDemo
+{
+	public static void main(String args[])
+	{
+		Employee e1=new Employee(101, "Sham", "Designer", 25000);
+		System.out.println(e1);
+	}
+}
+		
