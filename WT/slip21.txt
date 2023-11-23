@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spring Weather Stats</title>
+</head>
+<body>
+
+<?php
+$highTemperatures = [18, 20, 22, 25, 23, 21, 19, 24, 26, 28, 27, 22, 20, 25, 26];
+
+$averageHighTemp = array_sum($highTemperatures) / count($highTemperatures);
+
+arsort($highTemperatures);
+$fiveWarmestTemps = array_slice($highTemperatures, 0, 5);
+
+echo "<h2>Spring Weather Stats</h2>";
+echo "<p>Average High Temperature: " . number_format($averageHighTemp, 2) . "°C</p>";
+echo "<p>Five Warmest High Temperatures: " . implode('°C, ', $fiveWarmestTemps) . "°C</p>";
+?>
+
+</body>
+</html>
+
+#######################################################################################################
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+iris_data = pd.read_csv('iris.csv')
+
+species_frequency = iris_data['species'].value_counts()
+
+plt.figure(figsize=(8, 6))
+species_frequency.plot(kind='bar', color=['blue', 'green', 'red'])
+plt.title('Frequency of Iris Species')
+plt.xlabel('Species')
+plt.ylabel('Frequency')
+plt.xticks(rotation=0)
+plt.show()
+==============================================================================
+B->
+import pandas as pd
+import matplotlib.pyplot as plt
+
+iris_data = pd.read_csv('iris.csv')
+
+species_frequency = iris_data['species'].value_counts()
+
+plt.figure(figsize=(8, 6))
+species_frequency.plot(kind='bar', color=['blue', 'green', 'red'])
+plt.title('Frequency of Iris Species')
+plt.xlabel('Species')
+plt.ylabel('Frequency')
+plt.xticks(rotation=0)
+plt.show()

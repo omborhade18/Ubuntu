@@ -1,0 +1,107 @@
+<?php
+
+class Queue
+{
+    private $queue;
+
+    public function __construct()
+    {
+        $this->queue = [];
+    }
+
+    public function enqueue($element)
+    {
+        $this->queue[] = $element;
+        echo "Element $element enqueued to the queue.<br>";
+    }
+
+    public function dequeue()
+    {
+        if (!$this->isEmpty()) {
+            $removedElement = array_shift($this->queue);
+            echo "Element $removedElement dequeued from the queue.<br>";
+        } else {
+            echo "Queue is empty. Cannot dequeue.<br>";
+        }
+    }
+
+    public function display()
+    {
+        if (!$this->isEmpty()) {
+            echo "Queue Contents: " . implode(', ', $this->queue) . "<br>";
+        } else {
+            echo "Queue is empty.<br>";
+        }
+    }
+
+    public function isEmpty()
+    {
+        return empty($this->queue);
+    }
+}
+
+function main()
+{
+    $queue = new Queue();
+
+    while (true) {
+        echo "<br>Queue Operations:<br>";
+        echo "1. Enqueue<br>";
+        echo "2. Dequeue<br>";
+        echo "3. Display<br>";
+        echo "4. Exit<br>";
+
+        $choice = readline("Enter your choice (1/2/3/4): ");
+
+        switch ($choice) {
+            case '1':
+                $element = readline("Enter the element to enqueue: ");
+                $queue->enqueue($element);
+                break;
+            case '2':
+                $queue->dequeue();
+                break;
+            case '3':
+                $queue->display();
+                break;
+            case '4':
+                echo "Exiting the program. Goodbye!<br>";
+                exit();
+            default:
+                echo "Invalid choice. Please enter a valid option (1/2/3/4).<br>";
+        }
+    }
+}
+
+main();
+
+?>
+
+
+######################################################################################################
+
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, Normalizer
+
+data = pd.read_csv('winequality-red.csv')
+
+X = data.drop('quality', axis=1)
+y = data['quality']
+
+scaler = MinMaxScaler()
+X_rescaled = scaler.fit_transform(X)
+
+std_scaler = StandardScaler()
+X_standardized = std_scaler.fit_transform(X)
+
+normalizer = Normalizer()
+X_normalized = normalizer.fit_transform(X)
+
+print("Rescaled Data:")
+print(X_rescaled[:5])  # Printing first 5 rows for demonstration
+
+print("\nStandardized Data:")
+print(X_standardized[:5])  # Printing first 5 rows for demonstration
+
+print("\nNormalized Data:")
+print(X_normalized[:5])  # Printing first 5 rows for demonstration

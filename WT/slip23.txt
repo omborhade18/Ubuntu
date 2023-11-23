@@ -1,0 +1,81 @@
+
+<?php
+
+$stack = array();
+
+do {
+    echo "Stack Operations:\n";
+    echo "1. Insert an element\n";
+    echo "2. Delete an element\n";
+    echo "3. Display the contents\n";
+    echo "4. Exit\n";
+    echo "Enter your choice: ";
+    $choice = (int) readline();
+
+    switch ($choice) {
+        case 1:
+            echo "Enter the element to insert: ";
+            $element = (int) readline();
+            array_push($stack, $element);
+            echo "Element inserted successfully!\n";
+            break;
+        case 2:
+            if (!empty($stack)) {
+                $deletedElement = array_pop($stack);
+                echo "Deleted element: " . $deletedElement . "\n";
+            } else {
+                echo "Stack is empty! Cannot delete element.\n";
+            }
+            break;
+        case 3:
+            if (!empty($stack)) {
+                echo "Contents of the stack:\n";
+                foreach (array_reverse($stack) as $item) {
+                    echo $item . "\n";
+                }
+            } else {
+                echo "Stack is empty!\n";
+            }
+            break;
+        case 4:
+            echo "Exiting...\n";
+            break;
+        default:
+            echo "Invalid choice! Please try again.\n";
+    }
+
+    echo "\n";
+} while ($choice != 4);
+
+?>
+
+########################################################################################
+
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, Binarizer
+
+data = pd.read_csv('winequality-red.csv')
+
+X = data.drop('quality', axis=1)
+y = data['quality']
+
+scaler = MinMaxScaler()
+X_rescaled = scaler.fit_transform(X)
+
+std_scaler = StandardScaler()
+X_standardized = std_scaler.fit_transform(X)
+
+binarizer = Binarizer(threshold=3.5)  # Threshold is set to 3.5, you can change it if needed
+X_binarized = binarizer.transform(X)
+
+print("Rescaled Data:")
+print(X_rescaled[:5])  # Printing first 5 rows for demonstration
+
+print("\nStandardized Data:")
+print(X_standardized[:5])  # Printing first 5 rows for demonstration
+
+print("\nBinarized Data:")
+print(X_binarized[:5])  # Printing first 5 rows for demonstration
+
+
+

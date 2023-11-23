@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Calculator</title>
+</head>
+<body>
+ <h1>Calculator</h1>
+ <form action="calculate.php" method="post">
+ <label for="number1">Enter first number:</label>
+ <input type="number" id="number1" name="number1" required><br><br>
+ <label for="number2">Enter second number:</label>
+ <input type="number" id="number2" name="number2" required><br><br>
+ <input type="submit" value="Calculate">
+ </form>
+</body>
+</html>
+2)Php File
+<?php
+function calculateMod($num1, $num2) {
+ return $num1 % $num2;
+}
+function calculatePower($num1, $num2) {
+ return pow($num1, $num2);
+}
+function calculateSum($num1) {
+ return ($num1 * ($num1 + 1)) / 2;
+}
+function calculateFactorial($num2) {
+ if ($num2 == 0) {
+ return 1;
+ } else {
+ return $num2 * calculateFactorial($num2 - 1);
+ }
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+ $number1 = $_POST["number1"];
+ $number2 = $_POST["number2"];
+ $modResult = calculateMod($number1, $number2);
+ echo "Mod of $number1 and $number2 is: $modResult<br>";
+ $powerResult = calculatePower($number1, $number2);
+ echo "Power of $number1 raised to $number2 is: $powerResult<br>";
+ $sumResult = calculateSum($number1);
+ echo "Sum of first $number1 numbers is: $sumResult<br>";
+ $factorialResult = calculateFactorial($number2);
+ echo "Factorial of $number2 is: $factorialResult";
+}
+?>
+
+#######################################################################################
+
+import pandas as pd
+
+
+data = {
+    'Height': [65, 68, 70, 60, 74, 72],
+    'Weight': [120, 150, 180, 110, 200, 190]
+}
+
+df = pd.DataFrame(data)
+
+mean_values = df.mean()
+
+median_values = df.median()
+
+print("Column-wise Mean:")
+print(mean_values)
+
+print("\nColumn-wise Median:")
+print(median_values)
+===============================================
+B->
+def manhattan_distance(point1, point2):
+    return abs(point1[0] - point2[0]) + abs(point1[1] - point2[1])
+
+def sum_manhattan_distances(points):
+    n = len(points)
+    total_distance = 0
+
+    for i in range(n):
+        for j in range(i+1, n):
+            total_distance += manhattan_distance(points[i], points[j])
+
+    return total_distance
+
+points = [(1, 2), (4, 6), (7, 3), (9, 5)]
+
+result = sum_manhattan_distances(points)
+print(f"The sum of Manhattan distances between all pairs of points is: {result}")

@@ -1,0 +1,69 @@
+<?php
+
+function calculate_percentage($os, $wt, $ds, $python, $java, $cn) {
+    $total_marks = $os + $wt + $ds + $python + $java + $cn;
+    $percentage = ($total_marks / 600) * 100;
+    return round($percentage, 2);
+}
+
+$file_path = 'student.dat';
+$file_content = file($file_path, FILE_IGNORE_NEW_LINES);
+
+echo "<table border='1'>";
+echo "<tr><th>Roll No</th><th>Name</th><th>OS</th><th>WT</th><th>DS</th><th>Python</th><th>Java</th><th>CN</th><th>Percentage</th></tr>";
+
+foreach ($file_content as $line) {
+    $data = explode(',', $line);
+    list($roll_no, $name, $os, $wt, $ds, $python, $java, $cn) = array_map('intval', $data);
+
+    $percentage = calculate_percentage($os, $wt, $ds, $python, $java, $cn);
+
+    echo "<tr><td>$roll_no</td><td>$name</td><td>$os</td><td>$wt</td><td>$ds</td><td>$python</td><td>$java</td><td>$cn</td><td>$percentage%</td></tr>";
+}
+
+echo "</table>";
+
+?>
+
+##############################################################################################
+
+import pandas as pd
+import numpy as np
+
+data = {'name': ['John', 'Jane', 'Bob', 'Alice', 'Eve', 'Charlie', 'Diana', 'Frank', 'Grace', 'Henry'],
+        'age': [25, 30, 22, 28, 26, 27, 29, 31, 23, 24],
+        'percentage': [75.5, 88.3, 65.2, 90.1, 77.8, 82.6, 69.7, 95.0, 70.3, 78.9]}
+
+df = pd.DataFrame(data)
+
+additional_data = {'name': ['Sam', 'Lucy', 'Tom', 'Emily', 'Oliver', 'Sophia', 'Liam', 'Emma', 'Mason', 'Ava'],
+                   'age': [26, 29, 30, 25, 31, 23, 28, 27, 32, 24],
+                   'percentage': [72.4, 91.7, 68.8, 85.3, 79.6, 83.2, 76.9, 92.5, 73.8, 87.4]}
+
+df = df.append(pd.DataFrame(additional_data), ignore_index=True)
+
+print("Task 1: DataFrame with 20 rows")
+print(df)
+print()
+
+print("Task 2: Data Details")
+print(f"Shape: {df.shape}")
+print(f"Number of Rows: {len(df)}")
+print(f"Number of Columns: {len(df.columns)}")
+print(f"Data Types:\n{df.dtypes}\n")
+print(f"Feature Names:\n{df.columns}\n")
+print(f"Description:\n{df.describe()}\n")
+
+print("Task 3: Basic Statistical Details")
+print(df.describe())
+print()
+
+additional_data_task4 = {'name': ['Jane', np.nan, 'Bob', 'Alice', 'Eve'],
+                         'age': [30, 27, 22, 28, np.nan],
+                         'percentage': [88.3, 82.6, 65.2, np.nan, 77.8],
+                         'remarks': ['', '', '', '', '']}
+
+df = df.append(pd.DataFrame(additional_data_task4), ignore_index=True)
+
+print("Task 4: DataFrame with 25 rows (including duplicates and missing values)")
+print(df)
